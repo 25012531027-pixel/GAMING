@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXUS GAMING - Elite Gaming Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00ff9d;
+            --secondary: #ff0080;
+            --accent: #00d4ff;
+            --dark: #0a0e1a;
+            --darker: #050810;
+            --light: #ffffff;
+            --gray: #8892b0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: var(--darker);
+            color: var(--light);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at 20% 30%, rgba(0, 255, 157, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 70%, rgba(255, 0, 128, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 50%);
+            z-index: -1;
+            animation: bgPulse 8s ease-in-out infinite;
+        }
+
+        @keyframes bgPulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+
+        /* Grid Pattern Overlay */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 157, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 157, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            background: rgba(10, 14, 26, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid rgba(0, 255, 157, 0.2);
+            z-index: 1000;
+            animation: slideDown 0.8s ease;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            animation: glowPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { filter: drop-shadow(0 0 10px rgba(0, 255, 157, 0.5)); }
+            50% { filter: drop-shadow(0 0 20px rgba(0, 255, 157, 0.8)); }
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        nav a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Section Styling */
+        section {
+            min-height: 100vh;
+            padding: 8rem 5%;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 3px;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Home Section */
+        #home {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(10, 14, 26, 0.9), rgba(5, 8, 16, 0.9)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%230a0e1a" width="1200" height="800"/><g fill="%2300ff9d" opacity="0.1"><polygon points="600,100 700,300 500,300"/><polygon points="200,400 350,600 50,600"/><polygon points="900,500 1050,700 750,700"/></g></svg>');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-content {
+            animation: fadeIn 1.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .hero-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            background: linear-gradient(135deg, var(--primary), var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: titleGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes titleGlow {
+            0%, 100% { filter: drop-shadow(0 0 30px rgba(0, 255, 157, 0.6)); }
+            50% { filter: drop-shadow(0 0 50px rgba(0, 255, 157, 0.9)); }
+        }
+
+        .hero-subtitle {
+            font-size: 1.8rem;
+            color: var(--gray);
+            margin-bottom: 2rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-top: 3rem;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            font-family: 'Rajdhani', sans-serif;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: var(--dark);
+            box-shadow: 0 0 30px rgba(0, 255, 157, 0.5);
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 40px rgba(0, 255, 157, 0.7);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--light);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: var(--dark);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 30px rgba(0, 255, 157, 0.5);
+        }
+
+        /* About Section */
+        #about {
+            background: rgba(10, 14, 26, 0.5);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .about-text p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .stat-card {
+            background: rgba(0, 255, 157, 0.1);
+            padding: 2rem;
+            border: 2px solid rgba(0, 255, 157, 0.3);
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(0, 255, 157, 0.3);
+        }
+
+        .stat-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin-top: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        /* Services Section */
+        #services {
+            background: rgba(5, 8, 16, 0.8);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, rgba(0, 255, 157, 0.1), rgba(0, 212, 255, 0.1));
+            padding: 2.5rem;
+            border: 2px solid rgba(0, 255, 157, 0.3);
+            border-radius: 15px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 255, 157, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            border-color: var(--primary);
+            box-shadow: 0 20px 50px rgba(0, 255, 157, 0.4);
+        }
+
+        .service-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .service-card p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .service-card li {
+            padding: 0.5rem 0;
+            color: var(--light);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .service-card li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+        }
+
+        /* Gallery Section */
+        #gallery {
+            background: rgba(10, 14, 26, 0.7);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            border: 2px solid rgba(0, 255, 157, 0.3);
+            height: 300px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 255, 157, 0.9), rgba(0, 212, 255, 0.9));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            color: var(--dark);
+            text-transform: uppercase;
+        }
+
+        /* Device Checker Section */
+        .device-checker {
+            background: linear-gradient(135deg, rgba(0, 255, 157, 0.1), rgba(0, 212, 255, 0.1));
+            padding: 3rem;
+            border-radius: 15px;
+            border: 2px solid rgba(0, 255, 157, 0.3);
+            margin-top: 4rem;
+            text-align: center;
+        }
+
+        .device-checker h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+        }
+
+        #deviceSpecs {
+            background: rgba(10, 14, 26, 0.8);
+            padding: 2rem;
+            border-radius: 10px;
+            border: 2px solid var(--primary);
+            margin-top: 2rem;
+            text-align: left;
+        }
+
+        .spec-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem;
+            border-bottom: 1px solid rgba(0, 255, 157, 0.2);
+            font-size: 1.1rem;
+        }
+
+        .spec-label {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .spec-value {
+            color: var(--light);
+        }
+
+        #performanceResult {
+            margin-top: 2rem;
+            padding: 2rem;
+            border-radius: 10px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .can-run {
+            background: rgba(0, 255, 157, 0.2);
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .cannot-run {
+            background: rgba(255, 0, 128, 0.2);
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+        }
+
+        /* Founder Section */
+        #founder {
+            background: rgba(5, 8, 16, 0.9);
+        }
+
+        .founder-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .founder-image {
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            border: 5px solid var(--primary);
+            box-shadow: 0 0 50px rgba(0, 255, 157, 0.5);
+            object-fit: cover;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .founder-info h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .founder-title {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .founder-info p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .founder-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .founder-stat {
+            text-align: center;
+        }
+
+        .founder-stat-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            color: var(--primary);
+            font-weight: 900;
+        }
+
+        .founder-stat-label {
+            font-size: 1rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            margin-top: 0.5rem;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, rgba(10, 14, 26, 0.98), rgba(5, 8, 16, 0.98));
+            padding: 3rem;
+            border-radius: 15px;
+            border: 2px solid var(--primary);
+            box-shadow: 0 0 50px rgba(0, 255, 157, 0.5);
+            max-width: 500px;
+            width: 90%;
+            animation: slideUp 0.4s ease;
+        }
+
+        @keyframes slideUp {
+            from { transform: translate(-50%, -40%); opacity: 0; }
+            to { transform: translate(-50%, -50%); opacity: 1; }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+            color: var(--primary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: var(--secondary);
+            transform: rotate(90deg);
+        }
+
+        .modal h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(0, 255, 157, 0.1);
+            border: 2px solid rgba(0, 255, 157, 0.3);
+            border-radius: 5px;
+            color: var(--light);
+            font-size: 1rem;
+            font-family: 'Rajdhani', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(0, 255, 157, 0.3);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .error-message {
+            color: var(--secondary);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(5, 8, 16, 0.98);
+            padding: 2rem 5%;
+            text-align: center;
+            border-top: 2px solid rgba(0, 255, 157, 0.2);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-content p {
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+
+        .footer-content span {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            nav ul {
+                gap: 1.5rem;
+            }
+
+            .about-content,
+            .founder-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .founder-image {
+                margin: 0 auto;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 600px) {
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .modal-content {
+                padding: 2rem;
+            }
+        }
+
+        /* Scroll Animation */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">⚡ NEXUS GAMING</div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#founder">Founder</a></li>
+                    <li><a href="#" onclick="openModal('loginModal')">Login</a></li>
+                    <li><a href="#" onclick="openModal('registerModal')">Register</a></li>
+                    <li><a href="#" onclick="openModal('feedbackModal')">Feedback</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Home Section -->
+    <section id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">NEXUS GAMING</h1>
+                <p class="hero-subtitle">Elite Gaming Portal for Next-Gen Experiences</p>
+                <p style="font-size: 1.3rem; color: var(--light); max-width: 800px; margin: 2rem auto;">
+                    Dive into the ultimate gaming universe featuring GTA 5, PS5 exclusives, BGMI, and cutting-edge AAA titles. Your gateway to premium gaming experiences starts here.
+                </p>
+                <div class="cta-buttons">
+                    <button class="btn btn-primary" onclick="openModal('registerModal')">Join Now</button>
+                    <button class="btn btn-secondary" onclick="document.getElementById('services').scrollIntoView({behavior: 'smooth'})">Explore Games</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">About Nexus Gaming</h2>
+            <div class="about-content">
+                <div class="about-text animate-on-scroll">
+                    <h3>The Ultimate Gaming Destination</h3>
+                    <p>
+                        Nexus Gaming is your premier portal to the world of high-end gaming. We provide comprehensive information, system requirements, and expert insights for the latest and greatest games across all platforms.
+                    </p>
+                    <p>
+                        From open-world masterpieces like GTA 5 to competitive titles like BGMI, from stunning PS5 exclusives to PC gaming excellence, we cover it all. Our mission is to help gamers make informed decisions about their gaming setup and experiences.
+                    </p>
+                    <p>
+                        Whether you're building your first gaming PC or upgrading to next-gen consoles, Nexus Gaming provides the knowledge and tools you need to optimize your gaming journey.
+                    </p>
+                </div>
+                <div class="stats-grid animate-on-scroll">
+                    <div class="stat-card">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Games Covered</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">1M+</div>
+                        <div class="stat-label">Active Gamers</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">50K+</div>
+                        <div class="stat-label">System Checks</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Support</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Elite Gaming Services</h2>
+            <div class="services-grid">
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">🎮</div>
+                    <h3>AAA Title Database</h3>
+                    <p>Comprehensive information on the latest high-end games including system requirements, gameplay features, and performance optimization tips.</p>
+                    <ul>
+                        <li>GTA 5 - Open World Excellence</li>
+                        <li>PS5 Exclusives - Next-Gen Graphics</li>
+                        <li>BGMI - Battle Royale Mastery</li>
+                        <li>Cyberpunk 2077 - Futuristic RPG</li>
+                        <li>Red Dead Redemption 2</li>
+                    </ul>
+                </div>
+
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">💻</div>
+                    <h3>PC Capability Analysis</h3>
+                    <p>Advanced system diagnostics to determine if your PC can handle the latest games. Get detailed performance predictions and upgrade recommendations.</p>
+                    <ul>
+                        <li>Real-time Hardware Detection</li>
+                        <li>GPU & CPU Benchmarking</li>
+                        <li>RAM & Storage Analysis</li>
+                        <li>FPS Prediction Engine</li>
+                        <li>Upgrade Path Suggestions</li>
+                    </ul>
+                </div>
+
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">🏆</div>
+                    <h3>Elite Premium Membership</h3>
+                    <p>Unlock exclusive content, early access to game releases, premium guides, and personalized gaming recommendations from our expert team.</p>
+                    <ul>
+                        <li>Early Game Access & Betas</li>
+                        <li>Exclusive Gaming Guides</li>
+                        <li>Priority Support 24/7</li>
+                        <li>Custom PC Build Consultation</li>
+                        <li>Monthly Gaming Tournaments</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Device Capability Checker -->
+            <div class="device-checker animate-on-scroll">
+                <h3>🖥️ Check Your PC Gaming Capability</h3>
+                <p style="color: var(--gray); font-size: 1.2rem; margin-bottom: 2rem;">
+                    Instantly analyze your system to see if you can run the latest AAA titles
+                </p>
+                <button class="btn btn-primary" onclick="checkDevice()">Analyze My System</button>
+                <div id="deviceSpecs" style="display: none;"></div>
+                <div id="performanceResult" style="display: none;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Game Showcase Gallery</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item animate-on-scroll">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Cdefs%3E%3ClinearGradient id='g1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23ff6b35;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23f7931e;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='800' height='600' fill='url(%23g1)'/%3E%3Ctext x='400' y='300' font-family='Arial' font-size='60' font-weight='bold' fill='white' text-anchor='middle'%3EGTA 5%3C/text%3E%3Ctext x='400' y='350' font-family='Arial' font-size='24' fill='white' text-anchor='middle'%3EOpen World Action%3C/text%3E%3C/svg%3E" alt="GTA 5">
+                    <div class="gallery-overlay">
+                        <h3>GTA 5</h3>
+                    </div>
+                </div>
+
+                <div class="gallery-item animate-on-scroll">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Cdefs%3E%3ClinearGradient id='g2' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%230066ff;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%2300d4ff;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='800' height='600' fill='url(%23g2)'/%3E%3Ctext x='400' y='300' font-family='Arial' font-size='60' font-weight='bold' fill='white' text-anchor='middle'%3EPS5 EXCLUSIVES%3C/text%3E%3Ctext x='400' y='350' font-family='Arial' font-size='24' fill='white' text-anchor='middle'%3ENext-Gen Graphics%3C/text%3E%3C/svg%3E" alt="PS5 Games">
+                    <div class="gallery-overlay">
+                        <h3>PS5 Exclusives</h3>
+                    </div>
+                </div>
+
+                <div class="gallery-item animate-on-scroll">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Cdefs%3E%3ClinearGradient id='g3' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23ff0080;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23ff6b9d;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='800' height='600' fill='url(%23g3)'/%3E%3Ctext x='400' y='300' font-family='Arial' font-size='60' font-weight='bold' fill='white' text-anchor='middle'%3EBGMI%3C/text%3E%3Ctext x='400' y='350' font-family='Arial' font-size='24' fill='white' text-anchor='middle'%3EBattle Royale%3C/text%3E%3C/svg%3E" alt="BGMI">
+                    <div class="gallery-overlay">
+                        <h3>BGMI</h3>
+                    </div>
+                </div>
+
+                <div class="gallery-item animate-on-scroll">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Cdefs%3E%3ClinearGradient id='g4' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%2300ff9d;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%2300d4ff;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='800' height='600' fill='url(%23g4)'/%3E%3Ctext x='400' y='300' font-family='Arial' font-size='60' font-weight='bold' fill='white' text-anchor='middle'%3ECyberpunk 2077%3C/text%3E%3Ctext x='400' y='350' font-family='Arial' font-size='24' fill='white' text-anchor='middle'%3EFuturistic RPG%3C/text%3E%3C/svg%3E" alt="Cyberpunk">
+                    <div class="gallery-overlay">
+                        <h3>Cyberpunk 2077</h3>
+                    </div>
+                </div>
+
+                <div class="gallery-item animate-on-scroll">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Cdefs%3E%3ClinearGradient id='g5' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%238b4513;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23cd853f;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='800' height='600' fill='url(%23g5)'/%3E%3Ctext x='400' y='280' font-family='Arial' font-size='48' font-weight='bold' fill='white' text-anchor='middle'%3ERed Dead%3C/text%3E%3Ctext x='400' y='330' font-family='Arial' font-size='48' font-weight='bold' fill='white' text-anchor='middle'%3ERedemption 2%3C/text%3E%3Ctext x='400' y='370' font-family='Arial' font-size='24' fill='white' text-anchor='middle'%3EWestern Epic%3C/text%3E%3C/svg%3E" alt="RDR2">
+                    <div class="gallery-overlay">
+                        <h3>Red Dead Redemption 2</h3>
+                    </div>
+                </div>
+
+                <div class="gallery-item animate-on-scroll">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Cdefs%3E%3ClinearGradient id='g6' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23a855f7;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23ec4899;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='800' height='600' fill='url(%23g6)'/%3E%3Ctext x='400' y='280' font-family='Arial' font-size='48' font-weight='bold' fill='white' text-anchor='middle'%3EElden Ring%3C/text%3E%3Ctext x='400' y='350' font-family='Arial' font-size='24' fill='white' text-anchor='middle'%3EAction RPG Masterpiece%3C/text%3E%3C/svg%3E" alt="Elden Ring">
+                    <div class="gallery-overlay">
+                        <h3>Elden Ring</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Founder Section -->
+    <section id="founder">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Meet the Founder</h2>
+            <div class="founder-container">
+                <img src="assests/WhatsApp Image 2026-05-08 at 23.22.31.jpeg" viewBox='0 0 400 400'%3E%3Cdefs%3E%3CradialGradient id='grad1'%3E%3Cstop offset='0%25' style='stop-color:%2300ff9d;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%2300d4ff;stop-opacity:1' /%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='200' cy='200' r='200' fill='url(%23grad1)'/%3E%3Ccircle cx='200' cy='150' r='60' fill='%230a0e1a'/%3E%3Cellipse cx='200' cy='280' rx='100' ry='120' fill='%230a0e1a'/%3E%3Ctext x='200' y='360' font-family='Arial' font-size='80' font-weight='bold' fill='%23ffffff' text-anchor='middle'%3ENG%3C/text%3E%3C/svg%3E" alt="Founder" class="founder-image animate-on-scroll">
+                <div class="founder-info animate-on-scroll">
+                    <h3>PRAVEEN "NexusKing" Rodriguez</h3>
+                    <div class="founder-title">Founder & Chief Gaming Officer</div>
+                    <p>
+                        With over 15 years of experience in the gaming industry, Alex founded Nexus Gaming to bridge the gap between gamers and cutting-edge technology. A professional esports veteran and hardware enthusiast, he understands what it takes to deliver the ultimate gaming experience.
+                    </p>
+                    <p>
+                        From competing in international tournaments to building custom gaming rigs for enthusiasts worldwide, Alex's passion for gaming excellence drives every aspect of Nexus Gaming.
+                    </p>
+                    <p>
+                        "Gaming isn't just entertainment—it's a lifestyle, a community, and a technological revolution. At Nexus Gaming, we're committed to empowering every gamer with the knowledge and tools they need to succeed."
+                    </p>
+                    <div class="founder-stats">
+                        <div class="founder-stat">
+                            <div class="founder-stat-number">15+</div>
+                            <div class="founder-stat-label">Years Experience</div>
+                        </div>
+                        <div class="founder-stat">
+                            <div class="founder-stat-number">50+</div>
+                            <div class="founder-stat-label">Tournaments Won</div>
+                        </div>
+                        <div class="founder-stat">
+                            <div class="founder-stat-number">1M+</div>
+                            <div class="founder-stat-label">Gamers Helped</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('loginModal')">&times;</span>
+            <h2>⚡ Player Login</h2>
+            <form id="loginForm" onsubmit="validateLogin(event)">
+                <div class="form-group">
+                    <label for="loginUsername">Username</label>
+                    <input type="text" id="loginUsername" placeholder="Enter your username">
+                    <div class="error-message" id="loginUsernameError">Username is required</div>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter your password">
+                    <div class="error-message" id="loginPasswordError">Password must be at least 6 characters</div>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('registerModal')">&times;</span>
+            <h2>🎮 Join Nexus Gaming</h2>
+            <form id="registerForm" onsubmit="validateRegister(event)">
+                <div class="form-group">
+                    <label for="registerName">Full Name</label>
+                    <input type="text" id="registerName" placeholder="Enter your full name">
+                    <div class="error-message" id="registerNameError">Name is required</div>
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">Email</label>
+                    <input type="email" id="registerEmail" placeholder="Enter your email">
+                    <div class="error-message" id="registerEmailError">Valid email is required</div>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Password</label>
+                    <input type="password" id="registerPassword" placeholder="Create a password">
+                    <div class="error-message" id="registerPasswordError">Password must be at least 6 characters</div>
+                </div>
+                <div class="form-group">
+                    <label for="registerConfirmPassword">Confirm Password</label>
+                    <input type="password" id="registerConfirmPassword" placeholder="Confirm your password">
+                    <div class="error-message" id="registerConfirmPasswordError">Passwords must match</div>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Register</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Feedback Modal -->
+    <div id="feedbackModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('feedbackModal')">&times;</span>
+            <h2>💬 Share Your Feedback</h2>
+            <form id="feedbackForm" onsubmit="validateFeedback(event)">
+                <div class="form-group">
+                    <label for="feedbackName">Name</label>
+                    <input type="text" id="feedbackName" placeholder="Enter your name">
+                    <div class="error-message" id="feedbackNameError">Name is required</div>
+                </div>
+                <div class="form-group">
+                    <label for="feedbackEmail">Email</label>
+                    <input type="email" id="feedbackEmail" placeholder="Enter your email">
+                    <div class="error-message" id="feedbackEmailError">Valid email is required</div>
+                </div>
+                <div class="form-group">
+                    <label for="feedbackMessage">Message</label>
+                    <textarea id="feedbackMessage" placeholder="Share your thoughts..."></textarea>
+                    <div class="error-message" id="feedbackMessageError">Message is required</div>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Submit Feedback</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 <span>NEXUS GAMING</span> - Elite Gaming Portal. All Rights Reserved.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem;">Empowering Gamers Worldwide with Next-Gen Gaming Excellence</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                if (this.getAttribute('href') !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
+            });
+        });
+
+        // Scroll Animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Modal Functions
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal on outside click
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Login Validation
+        function validateLogin(e) {
+            e.preventDefault();
+            let isValid = true;
+
+            const username = document.getElementById('loginUsername').value.trim();
+            const password = document.getElementById('loginPassword').value;
+
+            // Reset errors
+            document.querySelectorAll('.error-message').forEach(el => el.style.display = 'none');
+
+            if (!username) {
+                document.getElementById('loginUsernameError').style.display = 'block';
+                isValid = false;
+            }
+
+            if (password.length < 6) {
+                document.getElementById('loginPasswordError').style.display = 'block';
+                isValid = false;
+            }
+
+            if (isValid) {
+                alert('✅ Login Successful! Welcome to Nexus Gaming, ' + username + '!');
+                closeModal('loginModal');
+                document.getElementById('loginForm').reset();
+            }
+        }
+
+        // Register Validation
+        function validateRegister(e) {
+            e.preventDefault();
+            let isValid = true;
+
+            const name = document.getElementById('registerName').value.trim();
+            const email = document.getElementById('registerEmail').value.trim();
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('registerConfirmPassword').value;
+
+            // Reset errors
+            document.querySelectorAll('.error-message').forEach(el => el.style.display = 'none');
+
+            if (!name) {
+                document.getElementById('registerNameError').style.display = 'block';
+                isValid = false;
+            }
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                document.getElementById('registerEmailError').style.display = 'block';
+                isValid = false;
+            }
+
+            if (password.length < 6) {
+                document.getElementById('registerPasswordError').style.display = 'block';
+                isValid = false;
+            }
+
+            if (password !== confirmPassword) {
+                document.getElementById('registerConfirmPasswordError').style.display = 'block';
+                isValid = false;
+            }
+
+            if (isValid) {
+                alert('🎉 Registration Successful! Welcome to the Nexus Gaming family, ' + name + '!');
+                closeModal('registerModal');
+                document.getElementById('registerForm').reset();
+            }
+        }
+
+        // Feedback Validation
+        function validateFeedback(e) {
+            e.preventDefault();
+            let isValid = true;
+
+            const name = document.getElementById('feedbackName').value.trim();
+            const email = document.getElementById('feedbackEmail').value.trim();
+            const message = document.getElementById('feedbackMessage').value.trim();
+
+            // Reset errors
+            document.querySelectorAll('.error-message').forEach(el => el.style.display = 'none');
+
+            if (!name) {
+                document.getElementById('feedbackNameError').style.display = 'block';
+                isValid = false;
+            }
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                document.getElementById('feedbackEmailError').style.display = 'block';
+                isValid = false;
+            }
+
+            if (!message) {
+                document.getElementById('feedbackMessageError').style.display = 'block';
+                isValid = false;
+            }
+
+            if (isValid) {
+                alert('💚 Thank you for your feedback, ' + name + '! We appreciate your input.');
+                closeModal('feedbackModal');
+                document.getElementById('feedbackForm').reset();
+            }
+        }
+
+        // Device Capability Checker
+        function checkDevice() {
+            const specsDiv = document.getElementById('deviceSpecs');
+            const resultDiv = document.getElementById('performanceResult');
+
+            // Simulate hardware detection
+            const specs = {
+                cpu: navigator.hardwareConcurrency + ' Core CPU',
+                ram: (navigator.deviceMemory || 8) + ' GB RAM',
+                gpu: 'Detecting GPU...',
+                os: navigator.platform,
+                screen: window.screen.width + 'x' + window.screen.height
+            };
+
+            specsDiv.innerHTML = `
+                <div class="spec-item">
+                    <span class="spec-label">Operating System:</span>
+                    <span class="spec-value">${specs.os}</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">CPU Cores:</span>
+                    <span class="spec-value">${specs.cpu}</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">RAM:</span>
+                    <span class="spec-value">${specs.ram}</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Screen Resolution:</span>
+                    <span class="spec-value">${specs.screen}</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">GPU:</span>
+                    <span class="spec-value">Advanced Detection Required</span>
+                </div>
+            `;
+
+            specsDiv.style.display = 'block';
+
+            // Performance analysis
+            const cores = navigator.hardwareConcurrency || 4;
+            const ram = navigator.deviceMemory || 8;
+
+            setTimeout(() => {
+                if (cores >= 6 && ram >= 16) {
+                    resultDiv.className = 'can-run';
+                    resultDiv.innerHTML = '🎮 ELITE GAMING READY!<br><small style="font-size: 0.8rem; opacity: 0.8;">Your system can handle GTA 5, PS5-level games, BGMI, and all AAA titles at high settings!</small>';
+                } else if (cores >= 4 && ram >= 8) {
+                    resultDiv.className = 'can-run';
+                    resultDiv.innerHTML = '✅ GAMING CAPABLE<br><small style="font-size: 0.8rem; opacity: 0.8;">Your system can run most games at medium to high settings. Consider upgrading for ultra performance.</small>';
+                } else {
+                    resultDiv.className = 'cannot-run';
+                    resultDiv.innerHTML = '⚠️ UPGRADE RECOMMENDED<br><small style="font-size: 0.8rem; opacity: 0.8;">Your system may struggle with high-end games. We recommend upgrading your CPU and RAM for optimal experience.</small>';
+                }
+                resultDiv.style.display = 'block';
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
